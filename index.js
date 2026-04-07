@@ -40,7 +40,9 @@ app.use("/fetch", fetchRoutes)
 app.use("/login", LoginRoutes)
 app.use("/dashboard", dashboard)
 app.use("/product", productRoutes)
-
+app.use("/", (req, res) => {
+    res.send("server is running")
+})
 
 
 const PORT = 5000;
