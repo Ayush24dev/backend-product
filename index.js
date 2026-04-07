@@ -45,6 +45,23 @@ app.use("/", (req, res) => {
 })
 
 
+let isReady = false;
+
+// simulate warmup (e.g., connect to DB, Cloudinary, etc.)
+setTimeout(() => {
+  isReady = true;
+  console.log("Server is ready to accept requests!");
+}, 5000); // 5 seconds warmup
+
+// Middleware to block requests until ready
+app.use((req, res, next) => {
+  if (!isReady) {
+    return res.status(503).json({ message: "Server warming up, please try again shortly." });
+  }
+  next();
+});
+
+
 const PORT = 5000;
 
 app.listen(PORT, () => console.log("server is running http://localhost:5000"))
