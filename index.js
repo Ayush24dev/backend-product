@@ -51,7 +51,7 @@ let isReady = false;
 setTimeout(() => {
   isReady = true;
   console.log("Server is ready to accept requests!");
-}, 5000); // 5 seconds warmup
+}, 50000); // 5 seconds warmup
 
 // Middleware to block requests until ready
 app.use((req, res, next) => {
